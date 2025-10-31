@@ -1,0 +1,69 @@
+# Data
+
+## Description
+
+The Spotify Web API provides access to detailed information about tracks, albums, artists, and playlists. This includes track-level metadata, audio features, and artist-level information, which are generated and maintained by Spotify. The data is returned in JSON format and can be imported into R for analysis.
+
+### Source
+The data is sourced from **Spotify Web API**. <br>
+- **Ownership**: [Spotify AB](https://www.spotify.com/us/about-us/contact/).  
+- **Collection method:** via authenticated API requests using R or Python <br> (`spotifyr`, `spotipy`, or direct GET calls).  
+- **Format:** **JSON** with hierarchical keys (tracks -> albums -> artists). <br> Later converted into tidy tabular format.  
+- **Frequency of updates:** API is continuously updated in near real time. <br> Popularity and playlist contents refreshes as user engagement changes.  
+- **Dimensions:** Each decade playlist contains approx. 150–200 tracks. <br> Results in a merged dataset of approx. **1,000–1,200 tracks** after cleaning and deduplication.  
+
+**API Documentation:** [Spotify for Developers — Web API](https://developer.spotify.com/documentation/web-api/) <br>
+[(Citation: https://developer.spotify.com/documentation/web-api/)](https://developer.spotify.com/documentation/web-api/)
+
+**Example Decade Playlists:** <br>
+- 70s: [All Out 70s](https://open.spotify.com/playlist/37i9dQZF1DWTJ7xPn4vNaz)  
+- 80s: [All Out 80s](https://open.spotify.com/playlist/37i9dQZF1DX4UtSsGT1Sbe)  
+- 90s: [All Out 90s](https://open.spotify.com/playlist/37i9dQZF1DXbTxeAdrVG2l)  
+- 2000s: [All Out 2000s](https://open.spotify.com/playlist/37i9dQZF1DX4o1oenSJRJd)  
+- 2010s: [All Out 2010s](https://open.spotify.com/playlist/37i9dQZF1DX5Ejj0EkURtP)  
+
+### Track-level Audio Features
+- danceability: how suitable a track is for dancing (0–1)  
+- energy: intensity and activity of the track (0–1)  
+- valence: musical positiveness/happiness (0–1)  
+- tempo: speed of the track in beats per minute (BPM)  
+- loudness: overall loudness in decibels (dB)  
+- acousticness: likelihood track is acoustic (0–1)  
+- instrumentalness: likelihood track has no vocals (0–1)  
+- speechiness: amount of spoken words (0–1)  
+- liveness: likelihood of a live audience (0–1)  
+- duration_ms: length of the track in milliseconds  
+- time_signature: beats per measure (integer)  
+- key: musical key (integer 0–11, where 0=C)  
+- mode: major (1) or minor (0)  
+
+### Track-level Metadata
+- track name  
+- track ID / URI  
+- album name  
+- release date (YYYY-MM-DD or YYYY)  
+- popularity score (0–100, relative)  
+- explicit content flag  
+
+### Artist-level Metadata
+- artist ID / URI  
+- genres (list of genres associated with artist)  
+- artist popularity score (0–100)  
+- number of followers  
+
+### Playlist-level Info
+- playlist name and URI  
+- number of tracks  
+- playlist follower count  
+- track position/order within playlist 
+
+## Missing value analysis
+
+After importing our playlist data into R, we will check each variable for missing or incomplete information. Some tracks, especially older or region-restricted ones, may lack metadata such as release year or popularity, and a small number may be missing specific audio features if Spotify’s internal analysis is unavailable for that track. Additionally, removed or unavailable songs in playlists sometimes appear as placeholders, which can create NA values during extraction. We will examine all key audio-feature fields, including danceability, energy, valence, tempo, and liveness, to identify missing entries. Any tracks with major missing fields will likely be removed from the analysis to maintain data quality, since imputing musical attributes could introduce bias. This process will ensure the final dataset is complete, consistent, and suitable for the comparisons we plan to conduct.
+
+## Notes / Limitations
+- Popularity is a relative metric, not raw play counts.  
+- Playlist data may be biased toward curator selections.  
+- Some older tracks may have incomplete release-date information.  
+- Genre labels are internally assigned by Spotify and may be inconsistent.  
+- Audio features are algorithmically generated, and values may contain slight noise. 

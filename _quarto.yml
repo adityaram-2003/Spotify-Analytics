@@ -1,0 +1,30 @@
+project:
+  type: book
+  output-dir: docs
+
+execute:
+  echo: true
+
+book:
+  title: "A Data-Driven Study of Spotify Track Audio Features"
+  author:
+    - Chaitya Shah (cs4621)
+    - Adityaram Komaraneni (ak5480)
+  repo-url: https://github.com/Chaitya0623/SpotifyAnalytics
+  date: today
+  page-footer:
+    right: |
+      This book was built with <a href="https://quarto.org/">Quarto</a>.
+  repo-actions: [edit, issue]
+  chapters:
+    - index.qmd
+    - data.qmd
+    # - results.qmd
+    # - conclusion.qmd
+
+format:
+  html:
+    theme: cosmo
+    code-fold: true
+
+
