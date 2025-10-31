@@ -6,11 +6,11 @@ execute:
   echo: true
 
 book:
-  title: "A Data-Driven Study of Spotify Track Audio Features"
+  title: "⁠⁠Spotify Audio Features Across Generations"
   author:
     - Chaitya Shah (cs4621)
     - Adityaram Komaraneni (ak5480)
-  repo-url: https://github.com/Chaitya0623/SpotifyAnalytics
+  repo-url: https://github.com/adityaram-2003/Spotify-Analytics
   date: today
   page-footer:
     right: |
